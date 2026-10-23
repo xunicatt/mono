@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-2.0
+# Author: xunicatt
+# Project: tiny 
+# Copyright (c) 2026 xunicatt <contact.aniket.biswas@gmail.com>
+
+CompileFlags:
+  Add: [
+    -ffreestanding,
+    -Wall,
+    -Werror,
+    -Wextra,
+  ]
+  Remove: [
+    -mstm8,
+    --opt-code-size,
+    --disable-warning,
+    --Werror,
+  ]
+  Compiler: sdcc
