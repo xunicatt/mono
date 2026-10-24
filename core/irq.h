@@ -8,5 +8,6 @@
 #include <bsp/bsp.h>
 
 void TIM1_UPD_OVF_IRQHandler(void) __interrupt(11);
+void trap(void) __trap;
 
 #endif
