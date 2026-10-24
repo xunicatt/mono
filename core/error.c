@@ -19,7 +19,7 @@ void error(uint8_t code) {
     TRAP();
 }
 
-void trap(void) __trap {
+void TRAP_IRQHandler(void) __trap {
     DISIRQ();
 
     bool state = false;
