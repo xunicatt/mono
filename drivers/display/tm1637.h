@@ -12,6 +12,16 @@
 #define MIN_BRIGHTNESS (0)
 #define MAX_BRIGHTNESS (7)
 
+#define SEG_A     (0x01)
+#define SEG_B     (0x02)
+#define SEG_C     (0x04)
+#define SEG_D     (0x08)
+#define SEG_E     (0x10)
+#define SEG_F     (0x20)
+#define SEG_G     (0x40)
+#define SEG_COLON (0x80)
+#define SEG_ALL   (0x7F)
+
 void tm1637_init(void);
 void tm1637_deinit(void);
 void tm1637_set_brightness(uint8_t brightness);
