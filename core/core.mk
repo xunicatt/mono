@@ -4,3 +4,4 @@
 
 SRCS += core/main.c
 SRCS += core/delay.c
+SRCS += core/error.c

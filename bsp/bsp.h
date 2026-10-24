@@ -12,6 +12,7 @@
 #ifndef __SDCC
   #define __interrupt(_x)
   #define __at(_x)
+  #define __trap
 #endif
 
 #define BIT(x) ((uint8_t)(1 << (x)))
@@ -22,6 +23,7 @@
 #define ENIRQ()  __asm__("rim")
 #define DISIRQ() __asm__("sim")
 #define HALT()   __asm__("halt")
+#define TRAP()   __asm__("trap")
 
 #define CRITICAL(...) do { \
     DISIRQ();              \
