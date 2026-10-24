@@ -25,9 +25,12 @@ void trap(void) __trap {
     bool state = false;
     for (;;) {
         state = !state;
-        if (state) leds_on(LED_2);
-        else leds_off(LED_2);
+        if (state) {
+            leds_on(LED_2);
+        } else {
+            leds_off(LED_2);
+        }
 
-        delay(500);
+        delay(250);
     }
 }
