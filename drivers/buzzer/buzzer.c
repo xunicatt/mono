@@ -8,22 +8,18 @@
 #define PORT (GPIOC)
 #define PIN  (GPIO_PIN_7)
 
-void buzzer_init(void)
-{
+void buzzer_init(void) {
     PIN_OUT_PP(PORT, PIN);
 }
 
-void buzzer_deinit(void)
-{
+void buzzer_deinit(void) {
     PIN_DEFAULT(PORT, PIN);
 }
 
-void buzzer_on(void)
-{
+void buzzer_on(void) {
     PIN_SET(PORT, PIN);
 }
 
-void buzzer_off(void)
-{
+void buzzer_off(void) {
     PIN_RESET(PORT, PIN);
 }

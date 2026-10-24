@@ -8,8 +8,7 @@
 #define PORT (GPIOD)
 #define PIN  (GPIO_PIN_2)
 
-void ldr_init(void)
-{
+void ldr_init(void) {
     /* Enable ADC Peripheral */
     CLK_PCKENR2 |= CLK_PCKENR2_ADC;
 
@@ -29,8 +28,7 @@ void ldr_init(void)
     ADC1_CR1 |= ADC1_CR1_ADON;
 }
 
-void ldr_deinit(void)
-{
+void ldr_deinit(void) {
     /* Disable ADC */
     ADC1_CR1 &= ~ADC1_CR1_ADON;
     PIN_DEFAULT(PORT, PIN);
@@ -38,8 +36,7 @@ void ldr_deinit(void)
     CLK_PCKENR2 &= ~CLK_PCKENR2_ADC;
 }
 
-uint16_t ldr_read(void)
-{
+uint16_t ldr_read(void) {
     volatile uint8_t lsb, msb;
 
     ADC1_CR1 |= ADC1_CR1_ADON;
