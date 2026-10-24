@@ -4,6 +4,7 @@
 
 #include <bsp/bsp.h>
 #include <core/delay.h>
+#include <core/display.h>
 #include <drivers/buzzer/buzzer.h>
 #include <drivers/display/tm1637.h>
 #include <drivers/input/buttons.h>
@@ -41,4 +42,22 @@ void init(void) {
     buttons_init();
     ds3231_init();
     ldr_init();
+ 
+    /* CLEAR STATE */
+    display_init();
+    display_clear(true);
+    leds_off(LED_1 | LED_2 | LED_3);
+    buzzer_off();
+    
+    /* TEST */
+    display_print("8888", false);
+    display_set_colon(true, false);
+    display_flush();
+    leds_on(LED_1 | LED_2 | LED_3);
+    buzzer_on();
+    msleep(250);
+    buzzer_off();
+    msleep(750);
+    leds_off(LED_1 | LED_2 | LED_3);
+    display_clear(true);
 }
