@@ -39,7 +39,7 @@ ASMDIR := $(BUILD)/asm
 DCEDIR := $(BUILD)/dce
 OBJDIR := $(BUILD)/obj
 
-CFILES := $(SRCS)
+CFILES   := $(SRCS)
 ASMFILES := $(patsubst %.c, $(ASMDIR)/%.asm, $(CFILES))
 OBJFILES := $(patsubst %.c, $(OBJDIR)/%.rel, $(notdir $(CFILES)))
 
@@ -57,13 +57,13 @@ $(ASMDIR)/%.asm: %.c
 dce: $(ASMFILES)
 	@echo "DCE : Optimizing"
 	$(Q)mkdir -p $(DCEDIR)
-	$(Q)$(DCE) -o $(DCEDIR) $^
+	$(Q)$(DCE) -o $(DCEDIR) $^ > /dev/null
 
 # Stage 3: Assembly to Object file (ASM -> REL)
 $(OBJDIR)/%.rel: $(DCEDIR)/%.asm
 	$(Q)mkdir -p $(OBJDIR)
 	$(Q)$(AS) -plosgffw $@ $<
-	@echo "ASM  : $@"
+	@echo "ASM : $@"
 
 # Stage 4: Final firmware generation (RELs -> IHX)
 $(BUILD)/$(TARGET): dce $(OBJFILES)
