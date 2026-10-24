@@ -4,14 +4,17 @@
 
 #include <bsp/bsp.h>
 #include <core/delay.h>
+#include <core/display.h>
 #include <core/error.h>
 #include <drivers/led/leds.h>
 
 void error(uint8_t code) {
-    UNUSED(code);
+    if (code == ERR_OK) {
+        return;
+    }
 
-    // TODO: write code to the display
-    //       in format EXXX
+    display_print_num(code, false);
+    display_printc(0, 'E', true);
 
     TRAP();
 }
