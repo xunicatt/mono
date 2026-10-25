@@ -34,6 +34,7 @@ endif
 include core/core.mk
 include drivers/drivers.mk
 include init/init.mk
+include run/run.mk
 
 ASMDIR := $(BUILD)/asm
 DCEDIR := $(BUILD)/dce
