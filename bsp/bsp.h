@@ -9,12 +9,14 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+/* Suppress LSP erorrs/warnings */
 #ifndef __SDCC
   #define __interrupt(_x)
   #define __at(_x)
   #define __trap
 #endif
 
+/* Handy Macros */
 #define BIT(x) ((uint8_t)(1 << (x)))
 #define REG(base, offset) (*(volatile uint8_t *)((base) + (offset)))
 

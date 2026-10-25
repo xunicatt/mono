@@ -46,7 +46,7 @@ static void tm1637_wait_for_ack(void) {
     PIN_RESET(PORT, CLK_PIN);
     usleep(5);
 
-    // TODO: check for data pin low
+    /* TODO: check for data pin low */
 
     PIN_SET(PORT, CLK_PIN);
     usleep(2);
