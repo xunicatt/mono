@@ -8,6 +8,44 @@
 #define ALPHAS (26)
 #define NUMS   (10)
 
+#define ALPHA_A (SEG_ALL & ~(SEG_D))                 /* A */
+#define ALPHA_B (SEG_ALL & ~(SEG_A | SEG_B))         /* B */
+#define ALPHA_C (SEG_ALL & ~(SEG_B | SEG_C | SEG_G)) /* C */
+#define ALPHA_D (SEG_ALL & ~(SEG_A | SEG_F))         /* D */
+#define ALPHA_E (SEG_ALL & ~(SEG_B | SEG_C))         /* E */
+#define ALPHA_F (SEG_ALL & ~(SEG_B | SEG_C | SEG_D)) /* F */
+#define ALPHA_G (SEG_ALL & ~(SEG_B | SEG_G))         /* G */
+#define ALPHA_H (SEG_ALL & ~(SEG_A | SEG_D))         /* H */
+#define ALPHA_I (SEG_E | SEG_F)                      /* I */
+#define ALPHA_J (SEG_ALL & ~(SEG_A | SEG_F | SEG_G)) /* J */
+#define ALPHA_K (SEG_G)                              /* K */
+#define ALPHA_L (SEG_D | SEG_E | SEG_F)              /* L */
+#define ALPHA_M (SEG_G)                              /* M */
+#define ALPHA_N (SEG_ALL & ~(SEG_D | SEG_G))         /* N */
+#define ALPHA_O (SEG_ALL & ~(SEG_G))                 /* O */
+#define ALPHA_P (SEG_ALL & ~(SEG_C | SEG_D))         /* P */
+#define ALPHA_Q (SEG_ALL & ~(SEG_D | SEG_E))         /* Q */
+#define ALPHA_R (SEG_E | SEG_F | SEG_G)              /* R */
+#define ALPHA_S (SEG_ALL & ~(SEG_B | SEG_E))         /* S */
+#define ALPHA_T (SEG_ALL & ~(SEG_A | SEG_B | SEG_C)) /* T */
+#define ALPHA_U (SEG_ALL & ~(SEG_A | SEG_G))         /* U */
+#define ALPHA_V (SEG_G)                              /* V */
+#define ALPHA_W (SEG_G)                              /* W */
+#define ALPHA_X (SEG_G)                              /* X */
+#define ALPHA_Y (SEG_ALL & ~(SEG_A | SEG_E))         /* Y */
+#define ALPHA_Z (SEG_ALL & ~(SEG_C | SEG_F))         /* Z */
+
+#define NUM_0 (SEG_ALL & ~(SEG_G))                 /* 0 */
+#define NUM_1 (SEG_B | SEG_C)                      /* 1 */
+#define NUM_2 (SEG_ALL & ~(SEG_C | SEG_F))         /* 2 */
+#define NUM_3 (SEG_ALL & ~(SEG_E | SEG_F))         /* 3 */
+#define NUM_4 (SEG_ALL & ~(SEG_A | SEG_D | SEG_E)) /* 4 */
+#define NUM_5 (SEG_ALL & ~(SEG_B | SEG_E))         /* 5 */
+#define NUM_6 (SEG_ALL & ~(SEG_B))                 /* 6 */
+#define NUM_7 (SEG_A | SEG_B | SEG_C)              /* 7 */
+#define NUM_8 (SEG_ALL)                            /* 8 */
+#define NUM_9 (SEG_ALL & ~(SEG_E))                 /* 9 */
+
 #define IS_ALPHA(c) ((c) >= 'A' && (c) <= 'Z')
 #define IS_NUM(c)   ((c) >= '0' && (c) <= '9')
 
@@ -21,45 +59,45 @@ do {                       \
 } while (0)
 
 static const uint8_t alphabets[ALPHAS] = {
-    SEG_ALL & ~(SEG_D),                 /* A */
-    SEG_ALL & ~(SEG_A | SEG_B),         /* B */
-    SEG_ALL & ~(SEG_B | SEG_C | SEG_G), /* C */
-    SEG_ALL & ~(SEG_A | SEG_F),         /* D */
-    SEG_ALL & ~(SEG_B | SEG_C),         /* E */
-    SEG_ALL & ~(SEG_B | SEG_C | SEG_D), /* F */
-    SEG_ALL & ~(SEG_B | SEG_G),         /* G */
-    SEG_ALL & ~(SEG_A | SEG_D),         /* H */
-    SEG_E | SEG_F,                      /* I */
-    SEG_ALL & ~(SEG_A | SEG_F | SEG_G), /* J */
-    SEG_G,                              /* K */
-    SEG_D | SEG_E | SEG_F,              /* L */
-    SEG_G,                              /* M */
-    SEG_ALL & ~(SEG_D | SEG_G),         /* N */
-    SEG_ALL & ~(SEG_G),                 /* O */
-    SEG_ALL & ~(SEG_C | SEG_D),         /* P */
-    SEG_ALL & ~(SEG_D | SEG_E),         /* Q */
-    SEG_E | SEG_F | SEG_G,              /* R */
-    SEG_ALL & ~(SEG_B | SEG_E),         /* S */
-    SEG_ALL & ~(SEG_A | SEG_B | SEG_C), /* T */
-    SEG_ALL & ~(SEG_A | SEG_G),         /* U */
-    SEG_G,                              /* M */
-    SEG_G,                              /* M */
-    SEG_G,                              /* M */
-    SEG_ALL & ~(SEG_A | SEG_E),         /* Y */
-    SEG_ALL & ~(SEG_C | SEG_F),         /* Z */
+    ALPHA_A,
+    ALPHA_B,
+    ALPHA_C,
+    ALPHA_D,
+    ALPHA_E,
+    ALPHA_F,
+    ALPHA_G,
+    ALPHA_H,
+    ALPHA_I,
+    ALPHA_J,
+    ALPHA_K,
+    ALPHA_L,
+    ALPHA_M,
+    ALPHA_N,
+    ALPHA_O,
+    ALPHA_P,
+    ALPHA_Q,
+    ALPHA_R,
+    ALPHA_S,
+    ALPHA_T,
+    ALPHA_U,
+    ALPHA_V,
+    ALPHA_W,
+    ALPHA_X,
+    ALPHA_Y,
+    ALPHA_Z,
 };
 
 static const uint8_t numbers[NUMS] = {
-    SEG_ALL & ~(SEG_G),                 /* 0 */
-    SEG_B | SEG_C,                      /* 1 */
-    SEG_ALL & ~(SEG_C | SEG_F),         /* 2 */
-    SEG_ALL & ~(SEG_E | SEG_F),         /* 3 */
-    SEG_ALL & ~(SEG_A | SEG_D | SEG_E), /* 4 */
-    SEG_ALL & ~(SEG_B | SEG_E),         /* 5 */
-    SEG_ALL & ~(SEG_B),                 /* 6 */
-    SEG_A | SEG_B | SEG_C,              /* 7 */
-    SEG_ALL,                            /* 8 */
-    SEG_ALL & ~(SEG_E),                 /* 9 */
+    NUM_0,
+    NUM_1,
+    NUM_2,
+    NUM_3,
+    NUM_4,
+    NUM_5,
+    NUM_6,
+    NUM_7,
+    NUM_8,
+    NUM_9,
 };
 
 static uint8_t buffer[DIGITS];
