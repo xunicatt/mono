@@ -5,9 +5,15 @@
 #include <core/display.h>
 #include <drivers/display/tm1637.h>
 
+/* Counts */
 #define ALPHAS (26)
 #define NUMS   (10)
 
+/* Special Characters */
+#define SC_SPACE  (~(SEG_ALL)) /* SPACE */
+#define SC_HYPHEN (SEG_G)      /* - */
+
+/* Alphabets */
 #define ALPHA_A (SEG_ALL & ~(SEG_D))                 /* A */
 #define ALPHA_B (SEG_ALL & ~(SEG_A | SEG_B))         /* B */
 #define ALPHA_C (SEG_ALL & ~(SEG_B | SEG_C | SEG_G)) /* C */
@@ -18,9 +24,9 @@
 #define ALPHA_H (SEG_ALL & ~(SEG_A | SEG_D))         /* H */
 #define ALPHA_I (SEG_E | SEG_F)                      /* I */
 #define ALPHA_J (SEG_ALL & ~(SEG_A | SEG_F | SEG_G)) /* J */
-#define ALPHA_K (SEG_G)                              /* K */
+#define ALPHA_K (SC_HYPHEN)                          /* K */
 #define ALPHA_L (SEG_D | SEG_E | SEG_F)              /* L */
-#define ALPHA_M (SEG_G)                              /* M */
+#define ALPHA_M (SC_HYPHEN)                          /* M */
 #define ALPHA_N (SEG_ALL & ~(SEG_D | SEG_G))         /* N */
 #define ALPHA_O (SEG_ALL & ~(SEG_G))                 /* O */
 #define ALPHA_P (SEG_ALL & ~(SEG_C | SEG_D))         /* P */
@@ -29,12 +35,13 @@
 #define ALPHA_S (SEG_ALL & ~(SEG_B | SEG_E))         /* S */
 #define ALPHA_T (SEG_ALL & ~(SEG_A | SEG_B | SEG_C)) /* T */
 #define ALPHA_U (SEG_ALL & ~(SEG_A | SEG_G))         /* U */
-#define ALPHA_V (SEG_G)                              /* V */
-#define ALPHA_W (SEG_G)                              /* W */
-#define ALPHA_X (SEG_G)                              /* X */
+#define ALPHA_V (SC_HYPHEN)                          /* V */
+#define ALPHA_W (SC_HYPHEN)                          /* W */
+#define ALPHA_X (SC_HYPHEN)                          /* X */
 #define ALPHA_Y (SEG_ALL & ~(SEG_A | SEG_E))         /* Y */
 #define ALPHA_Z (SEG_ALL & ~(SEG_C | SEG_F))         /* Z */
 
+/* Numbers */
 #define NUM_0 (SEG_ALL & ~(SEG_G))                 /* 0 */
 #define NUM_1 (SEG_B | SEG_C)                      /* 1 */
 #define NUM_2 (SEG_ALL & ~(SEG_C | SEG_F))         /* 2 */
@@ -246,9 +253,11 @@ uint8_t display_get_bitmap(char c) {
         return numbers[c - '0'];
     }
 
-    if (c == '-') {
-        return SEG_G;
-    }
+    switch (c) {
+    case '-':
+        return SC_HYPHEN;
 
-    return 0x00;
+    default: 
+        return SC_SPACE;
+    }
 }
