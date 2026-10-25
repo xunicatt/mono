@@ -1,0 +1,1 @@
+The `docs/` directory contains unmodified manufacturer datasheets provided for reference only. These documents are the property and copyright of their respective authors and are not covered by the GPLv2 license applied to the source code in this repository.
