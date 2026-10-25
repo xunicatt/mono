@@ -240,6 +240,14 @@ void display_set_colon(bool show, bool flush) {
     }
 }
 
+void display_toggle_colon(bool flush) {
+    buffer[1] ^= SEG_COLON;
+
+    if (flush) {
+        display_flush();
+    }
+}
+
 void display_flush(void) {
     tm1637_write_all(buffer, DIGITS);
 }

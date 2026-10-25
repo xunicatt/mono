@@ -21,6 +21,7 @@ void display_shift_left(void);
 void display_shift_right(void);
 void display_clear(bool flush);
 void display_set_colon(bool show, bool flush);
+void display_toggle_colon(bool flush);
 void display_flush(void);
 uint8_t display_get_bitmap(char c);
 
