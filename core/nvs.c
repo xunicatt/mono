@@ -32,7 +32,13 @@ uint8_t nvs_read(uint16_t index) {
 }
 
 void nvs_write(uint16_t index, uint8_t value) {
-    volatile uint8_t *ptr = ((volatile uint8_t *)(EEPROM_BASE + index));
+    volatile uint8_t *ptr;
+
+    if (index >= MAX) {
+        return;
+    }
+
+    ptr = ((volatile uint8_t *)(EEPROM_BASE + index));
     *ptr = value;
 
     WAIT(FLASH_IAPSR, FLASH_IAPSR_EOP);
